@@ -1,0 +1,102 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/images/7130535.jpg'); /* Add your background image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* Container to center the content */
+.container {
+    width: 60%;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5em;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Forms */
+form {
+    margin-bottom: 20px;
+}
+
+/* Input fields and buttons */
+input[type="file"],
+input[type="text"],
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Button Styles */
+button {
+    background-color: #3498db; /* Primary button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #2980b9; /* Hover color */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Link for visualizations */
+a {
+    display: block;
+    text-align: center;
+    background-color: #337ab7;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    background-color: #286090;
+    transform: scale(1.05);
+}
+
+/* Input hover effects */
+input[type="file"]:hover,
+input[type="text"]:hover {
+    border-color: #2980b9;
+}
+
+/* General text styling */
+p {
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+}
