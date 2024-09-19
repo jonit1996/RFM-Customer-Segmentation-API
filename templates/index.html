@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Segmentation</h1>
+        
+        <!-- File Upload Form for CSV -->
+        <h2>Upload Customer Data (CSV)</h2>
+        <form action="{{ url_for('customer.upload_data') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept=".csv">
+            <button type="submit">Upload CSV</button>
+        </form>
+
+        <!-- MySQL Data Processing -->
+        <h2>Connect to SQL Database</h2>
+        <form action="{{ url_for('customer.process_from_db') }}" method="POST">
+            <button type="submit">Process SQL Server</button>
+        </form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Segmentation Result</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-image: url('/static/images/7130540.jpg'); /* Add your background image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      padding: 20px;
+    }
+    #container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    #chart-container {
+      width: 35%;
+    }
+    #table-container, #search-section {
+      width: 30%; /* Adjust width for each section */
+    }
+    #search-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+    input[type="text"], button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .back-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+    .table-button {
+        position: absolute;
+        bottom: 20px; /* Positioned at the bottom */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 24px;
+        font-size: 18px;
+        color: white;
+        background-color: #4CAF50; /* Primary button color */
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .table-button:hover {
+        background-color: #3e8e41; /* Hover color */
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Customer Segmentation Results</h2>
+
+    <a href="{{ url_for('index') }}" class="back-button">Back to Upload</a>
+
+    <div id="container">
+      <div id="chart-container">
+        <img src="{{ url_for('visualizations.plot_customer_groups') }}" alt="Customer Segments Pie Chart">
+      </div>
+
+      <div id="table-container">
+        </div>
+
+      <div id="search-section">
+        <input type="text" id="search-input" placeholder="Enter Customer ID">
+        <button onclick="searchCustomer()">Search</button>
+        <div id="output"></div>
+      </div>
+    </div>
+
+    <!-- DataTables and Chart.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function searchCustomer() {
+            const customerId = document.getElementById('search-input').value;
+            fetch(`/customer/search/${customerId}`)
+                .then(response => response.json())
+                .then(customer => {
+                    if (customer.error) {
+                        document.getElementById('output').innerHTML = "<p>Customer not found!</p>";
+                    } else {
+                        document.getElementById('output').innerHTML = `
+                            <p>Customer ID: ${customer.customer_id}</p>
+                            <p>RFM Score: ${customer.rfm_score}</p>
+                            <p>Segment: ${customer.customer_group}</p>
+                            <p>Lifetime Value: ${customer.clv}</p>
+                        `;
+                    }
+                });
+        }
+
+    </script>
+
+    <a href="{{ url_for('table') }}" class="table-button">Show Table</a>
+  </div>
+
+  </body>
+</html>
